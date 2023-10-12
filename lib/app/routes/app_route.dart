@@ -11,5 +11,10 @@ class AppPages {
         name: _path.mainAppScreen,
         page: () => const MainAppPageView(),
         binding: MainAppPagebindings()),
+        GetPage(
+        name: _path.userInputScreen,
+        page: () => const UserInputView(),
+        binding:   UserInputbindigs()),
+         
   ];
 }

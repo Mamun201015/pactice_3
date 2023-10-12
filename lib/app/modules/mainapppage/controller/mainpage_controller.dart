@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get/state_manager.dart';
@@ -15,5 +16,11 @@ class MainAppPageController extends GetxController {
 
   cheakTheme() async {
     theme.value = await Localdata().getThemeData();
+  }
+
+  changeTheme() {
+    theme.value = !theme.value;
+    Localdata().serThemeData(theme.value);
+    Get.changeThemeMode(theme.value ? ThemeMode.light : ThemeMode.dark);
   }
 }
