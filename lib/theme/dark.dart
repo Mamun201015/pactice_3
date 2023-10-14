@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 ThemeData darktheme = ThemeData(
   primaryColor: Colors.white,
   appBarTheme: AppBarTheme(
-      backgroundColor: Color.fromARGB(255, 212, 76, 76),
+      backgroundColor: Color.fromARGB(255, 101, 90, 90),
       titleTextStyle: TextStyle(color: Colors.white, fontSize: 20)),
-  scaffoldBackgroundColor: Color.fromARGB(255, 177, 98, 98),
+  scaffoldBackgroundColor: Color.fromARGB(255, 55, 40, 40),
   textTheme: TextTheme(
     headline1: TextStyle(color: Colors.white),
     headline2: TextStyle(color: Colors.white),

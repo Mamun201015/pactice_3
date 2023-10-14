@@ -16,11 +16,12 @@ class MainAppPageController extends GetxController {
 
   cheakTheme() async {
     theme.value = await Localdata().getThemeData();
+    Get.changeThemeMode(theme.value ? ThemeMode.dark : ThemeMode.light);
   }
 
   changeTheme() {
     theme.value = !theme.value;
     Localdata().serThemeData(theme.value);
-    Get.changeThemeMode(theme.value ? ThemeMode.light : ThemeMode.dark);
+    Get.changeThemeMode(theme.value ? ThemeMode.dark : ThemeMode.light);
   }
 }

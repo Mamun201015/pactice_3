@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:project_3/app/modules/userInput/controller/userinput_controller.dart';
+import 'package:project_3/app/modules/home/controller/home_controller.dart';
 
-abstract class HomeBindigs extends Bindings{
+class HomeBindigs extends Bindings {
   @override
   void dependencies() {
-     Get.lazyPut<UserInputController>(() => UserInputController());
+    Get.lazyPut<HomeController>(() => HomeController());
   }
 }
