@@ -1,5 +1,12 @@
 import 'package:get/state_manager.dart';
 
-class HomeController extends GetxController{
+class HomeController extends GetxController {
+  @override
+  void onInit() {
+    
+    super.onInit();
+  }
+
+  RxBool isLoading = false.obs;
   
 }
