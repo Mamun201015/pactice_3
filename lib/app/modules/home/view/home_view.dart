@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:project_3/app/modules/home/controller/home_controller.dart';
 import 'package:project_3/app/widget/KappPage.dart';
 
-
 import '../../../widget/KAppImage.dart';
 import '../../../widget/Ktext.dart';
 
@@ -12,7 +11,7 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
+    var controller = Get.put(HomeController());
     return Scaffold(
       appBar: KAppBar(title: "HomePage"),
       body: Obx(
@@ -57,18 +56,15 @@ class HomeView extends GetView<HomeController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          KAppImage(
-                            imageUrl:
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS75ebrwvgVW5Ks_oLfCbG8Httf3_9g-Ynl_Q&usqp=CAU",
-                          ),
+                          KAppImage(imageUrl: controller.userImagename.value),
                           Column(
                             children: [
                               Ktext(
-                                text: "Test",
+                                text: controller.user.value,
                                 fontWeight: FontWeight.bold,
                                 fontsize: 20,
                               ),
-                              Ktext(text: "Test")
+                              Ktext(text: controller.userName.value)
                             ],
                           ),
                         ],
@@ -77,8 +73,8 @@ class HomeView extends GetView<HomeController> {
                         height: 10,
                       ),
                       Ktext(
-                          text:
-                              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"),
+                        text: controller.userBio.value,
+                      ),
                       SizedBox(
                         height: 10,
                       ),
@@ -94,11 +90,16 @@ class HomeView extends GetView<HomeController> {
                           SizedBox(
                             height: 70,
                           ),
-                          IconButton(
-                              onPressed: () {
-                                
-                              },
-                              icon: Icon(Icons.grid_view)),
+                          Obx(
+                            () => IconButton(
+                                onPressed: () {
+                                  controller.gridview.value =
+                                      !controller.gridview.value;
+                                },
+                                icon: Icon(controller.gridview.value
+                                    ? Icons.grid_view
+                                    : Icons.list)),
+                          ),
                         ],
                       ),
                       SizedBox(

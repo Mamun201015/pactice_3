@@ -10,10 +10,10 @@ ThemeData darktheme = ThemeData(
     headline1: TextStyle(color: Colors.white),
     headline2: TextStyle(color: Colors.white),
     bodyText1: TextStyle(color: Colors.white),
+    
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style:
         ElevatedButton.styleFrom(backgroundColor: Colors.deepPurple.shade600),
   ),
-  
 );

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_3/app/modules/home/view/home_view.dart';
 
-
-
 class UserInputController extends GetxController {
   TextEditingController textEditingController = TextEditingController();
 
@@ -19,7 +17,7 @@ class UserInputController extends GetxController {
     } else if (textEditingController.text.contains(" ")) {
       Get.snackbar("User Input", "Text Field are Invalid");
     } else {
-      Get.to(() => HomeView());
+      Get.to(() => HomeView(), arguments: textEditingController.text);
     }
   }
 }

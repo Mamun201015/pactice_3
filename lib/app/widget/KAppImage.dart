@@ -14,13 +14,12 @@ class KAppImage extends StatelessWidget {
     return CachedNetworkImage(
       imageUrl: imageUrl,
       imageBuilder: (context, imageProvider) => Container(
-        height: 100,
-        width: 200,
+        height: 150,
+        width: 150,
         decoration: BoxDecoration(
             image: DecorationImage(
           image: imageProvider,
           fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(Colors.blue, BlendMode.colorBurn),
         )),
       ),
       placeholder: (context, url) => Container(
