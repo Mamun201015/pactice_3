@@ -13,7 +13,7 @@ class UserInputController extends GetxController {
 
   changedata() {
     if (textEditingController.text == "") {
-      Get.snackbar("User Input", "Emtry");
+      Get.snackbar("User Input", "Empty");
     } else if (textEditingController.text.contains(" ")) {
       Get.snackbar("User Input", "Text Field are Invalid");
     } else {

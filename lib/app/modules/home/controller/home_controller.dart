@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:project_3/app/modules/home/models/Repo_model.dart';
 
 class HomeController extends GetxController {
   var arguData;
@@ -14,7 +15,12 @@ class HomeController extends GetxController {
   }
 
   RxBool isLoading = false.obs;
-  RxBool gridview = false.obs;
+  RxBool isListview = false.obs;
+
+  RxList<RepoModel> repoList = <RepoModel>[].obs;
+  changelistview() {
+    isListview.value = !isListview.value;
+  }
 
   RxString userName = "".obs;
   RxString user = "".obs;
@@ -41,7 +47,16 @@ class HomeController extends GetxController {
     var cellrepodata = await http.get(Uri.parse(url));
     if (cellrepodata.statusCode == 200) {
       var userdata = json.decode(cellrepodata.body);
-      print(userdata);
+      for (var element in userdata) {
+        repoList.add(RepoModel(
+            name: element["name"].toString(),
+            url: element["html_url"].toString(),
+            createdAt: element["created_at"].toString(),
+            pushedAt: element["pushed_at"].toString(),
+            updateAt: element["updated_at"].toString()));
+      }
+      repoList.refresh();
+
       isLoading.value = true;
     }
   }
