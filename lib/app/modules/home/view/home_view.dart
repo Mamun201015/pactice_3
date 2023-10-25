@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project_3/app/modules/home/controller/home_controller.dart';
 import 'package:project_3/app/widget/KappPage.dart';
-
 import '../../../widget/KAppImage.dart';
+
 import '../../../widget/Ktext.dart';
-import '../../../widget/kcardview.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -26,7 +25,6 @@ class HomeView extends GetView<HomeController> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
-                      
                       children: [
                         SizedBox(
                           width: Get.width / 10,
@@ -83,7 +81,11 @@ class HomeView extends GetView<HomeController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Ktext(text: "Sort^"),
+                          InkWell(
+                              onTap: () {
+                                controller.showsortdi();
+                              },
+                              child: Ktext(text: "Sort^")),
                           SizedBox(
                             height: 70,
                           ),
@@ -95,6 +97,7 @@ class HomeView extends GetView<HomeController> {
                             () => IconButton(
                               onPressed: () {
                                 controller.changelistview();
+                                print(controller.repoList.length);
                               },
                               icon: controller.isListview.value
                                   ? Icon(Icons.list)
@@ -108,37 +111,78 @@ class HomeView extends GetView<HomeController> {
                       ),
                       // Klist_view(),
                       Obx(
-                        () => controller.repoList.isEmpty
-                            ? const SizedBox()
-                            : controller.isListview.value
+                        () =>
+                            //  controller.repoList.isEmpty
+                            //     ? const SizedBox(child: Text("Loading...."),)
+                            //     :
+                            controller.isListview.value
                                 ? SizedBox(
-                                    height: 120 * 10 * 20,
+                                    height: 120 *
+                                        controller.repoList.length.toDouble(),
                                     child: ListView.separated(
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
-                                      itemCount: 20,
+                                      itemCount: controller.repoList.length,
                                       separatorBuilder: (context, index) {
-                                        return SizedBox(
+                                        return const SizedBox(
                                           height: 10,
                                         );
                                       },
                                       itemBuilder: (context, index) {
-                                        return kcardview(
-                                          Ksize: "$index",
+                                        var item = controller.repoList[index];
+                                        return InkWell(
+                                          onTap: () {},
+                                          child: Container(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 20),
+                                            height: 100,
+                                            color: Color.fromARGB(
+                                                255, 6, 154, 195),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Ktext(
+                                                      text: item.name,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                    ),
+                                                    SizedBox(
+                                                      height: 5,
+                                                    ),
+                                                    Ktext(text: item.createdAt),
+                                                    Ktext(text: item.updateAt),
+                                                    Ktext(text: item.pushedAt),
+                                                  ],
+                                                ),
+                                                ElevatedButton(
+                                                    onPressed: () {},
+                                                    child: Text("public"))
+                                              ],
+                                            ),
+                                          ),
                                         );
                                       },
                                     ),
                                   )
                                 : SizedBox(
-                                    height: 100 * 10,
+                                    height: 100 *
+                                        controller.repoList.length.toDouble(),
                                     child: GridView.builder(
-                                      itemCount: 20,
+                                      itemCount: controller.repoList.length,
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
                                               crossAxisSpacing: 20,
                                               mainAxisSpacing: 20,
                                               crossAxisCount: 2),
                                       itemBuilder: (context, index) {
+                                        var item = controller.repoList[index];
                                         return GestureDetector(
                                           onTap: () {},
                                           child: Container(
@@ -153,7 +197,7 @@ class HomeView extends GetView<HomeController> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Ktext(
-                                                  text: "Hello world",
+                                                  text: item.name,
                                                   fontWeight: FontWeight.bold,
                                                   fontsize: 20,
                                                 ),
@@ -166,11 +210,11 @@ class HomeView extends GetView<HomeController> {
                                                 SizedBox(
                                                   height: 20,
                                                 ),
-                                                Ktext(text: "Uploaded On"),
+                                                Ktext(text: item.createdAt),
                                                 SizedBox(
                                                   height: 20,
                                                 ),
-                                                Ktext(text: "2020-10-24"),
+                                                Ktext(text: item.updateAt),
                                               ],
                                             ),
                                           ),
@@ -187,54 +231,3 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
-
-// class KGridview extends StatelessWidget {
-//   const KGridview({
-//     super.key,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 100 * 10,
-//       child: GridView.builder(
-//         itemCount: 20,
-//         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-//             crossAxisSpacing: 20, mainAxisSpacing: 20, crossAxisCount: 2),
-//         itemBuilder: (context, index) {
-//           return GestureDetector(
-//             onTap: () {},
-//             child: Container(
-//               width: 50,
-//               color: Colors.brown,
-//               padding: EdgeInsets.symmetric(horizontal: 10),
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   Ktext(
-//                     text: "Hello world",
-//                     fontWeight: FontWeight.bold,
-//                     fontsize: 20,
-//                   ),
-//                   SizedBox(
-//                     height: 20,
-//                   ),
-//                   ElevatedButton(onPressed: () {}, child: Text("Public")),
-//                   SizedBox(
-//                     height: 20,
-//                   ),
-//                   Ktext(text: "Uploaded On"),
-//                   SizedBox(
-//                     height: 20,
-//                   ),
-//                   Ktext(text: "2020-10-24"),
-//                 ],
-//               ),
-//             ),
-//           );
-//         },
-//       ),
-//     );
-//   }
-// }

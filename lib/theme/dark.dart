@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData darktheme = ThemeData(
+  iconTheme: IconThemeData(color: Colors.white),
   primaryColor: Colors.white,
   appBarTheme: AppBarTheme(
       backgroundColor: Color.fromARGB(255, 101, 90, 90),
@@ -10,7 +11,6 @@ ThemeData darktheme = ThemeData(
     headline1: TextStyle(color: Colors.white),
     headline2: TextStyle(color: Colors.white),
     bodyText1: TextStyle(color: Colors.white),
-    
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style:
